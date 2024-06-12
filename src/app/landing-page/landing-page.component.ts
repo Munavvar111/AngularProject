@@ -34,25 +34,27 @@ export class LandingPageComponent {
   Onsubmit() {
     if (this.WetherForm.valid) {
       console.log(this.WetherForm.value.CountryName)
-      this.ApiService.getCountry(this.WetherForm.value.CountryName).subscribe({
-        next:(data:[])=>{
-          console.log(data)
-          localStorage.setItem("countryName",this.WetherForm.value.CountryName);
-          this.router.navigate(['/countrtList']);
-        },
-        error: err=>{
-          Swal.fire({
-            title: "No Found",
-            text: 'No Country Found',
-            icon: 'error',
-            iconColor: '#1ea6d3',
-            buttonsStyling: false,
-            customClass: {
-                confirmButton: 'btn btn-primary px-4',
-            },
-            });          
-        }
-      })
+      localStorage.setItem("countryName",this.WetherForm.value.CountryName);
+      this.router.navigate(['/countrtList'])
+      // this.ApiService.getCountry(this.WetherForm.value.CountryName).subscribe({
+      //   next:(data:[])=>{
+      //     console.log(data)
+      //     localStorage.setItem("countryName",this.WetherForm.value.CountryName);
+      //     this.router.navigate(['/countrtList']);
+      //   },
+      //   error: err=>{
+      //     Swal.fire({
+      //       title: "No Found",
+      //       text: 'No Country Found',
+      //       icon: 'error',
+      //       iconColor: '#1ea6d3',
+      //       buttonsStyling: false,
+      //       customClass: {
+      //           confirmButton: 'btn btn-primary px-4',
+      //       },
+      //       });          
+      //   }
+      // })
      
     }
   }
