@@ -1,17 +1,15 @@
-<div class="countryPage">
+<div class="d-flex gap-4 flex-wrap">
 
-    <div class="row gap-4">
-        
-        @for (item of CountryList; track $index) {
-        <mat-card class="example-card col-md-4">
+    @for (item of CountryList; track $index) {
+        <mat-card class="example-card">
             <mat-card-header>
                 <div mat-card-avatar class="example-header-image"  [ngStyle]="{'background-image': 'url(' + item.flags.png + ')'}">
-                    
-                    
+
+                  
                 </div>
                 <mat-card-title>{{item.name.common}}</mat-card-title>
                 @for (capital of item.capital; track $index) {
-                    
+
                     <mat-card-subtitle>{{capital}}</mat-card-subtitle>
                 }
             </mat-card-header>
@@ -24,12 +22,11 @@
                 }
                 <p>Population: {{item.population}}</p>
                 <p>Coordinates: {{item.latlng}}</p>
-                
+
             </mat-card-content>
             <mat-card-actions>
                 <button mat-button (click)="getCapitalWeather(item.capital[0])">Capital Weather</button>
             </mat-card-actions>
         </mat-card>
     }
-</div>
 </div>
