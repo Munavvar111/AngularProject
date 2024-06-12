@@ -1,0 +1,55 @@
+/* weather.component.css */
+.weather-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHdlYXRoZXJ8ZW58MHx8MHx8fDA%3D') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+  
+  .temperature-icon {
+    display: flex;
+    align-items: center;
+    margin-top: 1rem;
+  }
+  
+  .temperature-icon img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .temperature-icon span {
+    font-size: 3rem;
+    margin-left: 1rem;
+  }
+  
+  .details {
+    margin-top: 2rem;
+  }
+  
+  .details p {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+  }
+  
+  .time-date {
+    margin-top: 2rem;
+  }
+  
+  .time {
+    font-size: 2rem;
+  }
+  
+  .date {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+  }
+  

@@ -1,0 +1,21 @@
+<!-- weather.component.html -->
+<div class="weather-page" *ngIf="weatherData">
+    <div class="header">
+      <h1>{{weatherData.location.name}}</h1>
+      <div class="temperature-icon">
+        <img [src]="weatherData.current.weather_icons[0]" alt="{{weatherData.current.weather_descriptions[0]}}">
+        <span>{{weatherData.current.temperature}}°C</span>
+      </div>
+    </div>
+    
+    <div class="details">
+      <p><strong>Wind Speed:</strong> {{weatherData.current.wind_speed}} km/h</p>
+      <p><strong>Precipitation:</strong> {{weatherData.current.precip}} mm</p>
+    </div>
+    
+    <div class="time-date">
+      <p class="time">{{weatherData.location.localtime | date:'hh:mm a'}}</p>
+      <p class="date">{{weatherData.location.localtime | date:'EEEE d MMMM y'}}</p>
+    </div>
+  </div>
+  

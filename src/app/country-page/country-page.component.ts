@@ -16,11 +16,12 @@ import { CommonModule } from '@angular/common';
 })
 export class CountrtPageComponent implements OnInit{
   CountryList:any=[];
+  countryName: string | null=null;
 
   constructor(private apiService:ApiServiceService,private router:Router){}
   ngOnInit(): void {
-    
-    this.apiService.getCountry(localStorage.getItem("countryName") || "").subscribe({
+    this.countryName = this.apiService.getCountryName();
+    this.apiService.getCountry(this.countryName || "" ).subscribe({
       next:(data:[])=>{
         this.CountryList=data
         console.log(this.CountryList)
@@ -41,4 +42,10 @@ export class CountrtPageComponent implements OnInit{
                 }
     })
   }
+  getCurrencies(currenciesObj: any) {
+    return Object.keys(currenciesObj).map(key => currenciesObj[key]);
+}
+getCapitalWeather(capital:string){
+  this.router.navigate(['/weather',capital])
+}
 }
