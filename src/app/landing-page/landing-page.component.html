@@ -1,0 +1,15 @@
+<div class="container">
+
+    <form [formGroup]="WetherForm" class="" (ngSubmit)="Onsubmit()">
+        <div class="form-floating mt-3 ">
+            <mat-form-field appearance="outline">
+              <mat-label>Enter The Country Name</mat-label>
+              <input matInput formControlName="CountryName" placeholder="CountryName">
+              <mat-error *ngIf="isControlInvalid('CountryName')" class="text-danger">Country Name is required.</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="d-flex gap-2 mt-3">
+            <button type="submit" mat-raised-button color="primary" [disabled]="WetherForm.invalid">Save</button>
+          </div>
+    </form>
+</div>
