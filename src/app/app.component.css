@@ -1,0 +1,23 @@
+.header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  
+  .header h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .header a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  .header a.active-link {
+    font-weight: bold;
+    color: #1ea6d3; /* Adjust color for active link */
+  }
+  

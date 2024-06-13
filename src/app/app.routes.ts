@@ -6,6 +6,6 @@ import { WeatherComponent } from './weather/weather.component';
 export const routes: Routes = [
     {path:"",component:LandingPageComponent},
     {path:"countrtList",component:CountrtPageComponent},
-    { path: 'weather/:capital', component: WeatherComponent }
+    { path: 'weather/:latitude/:longitude', component: WeatherComponent }
 
 ];

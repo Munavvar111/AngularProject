@@ -1,39 +1,39 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { MatCard, MatCardModule } from '@angular/material/card';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterOutlet } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 import Swal from 'sweetalert2';
+import { WeatherData } from '../model/country.model';
 
 @Component({
   selector: 'app-weather',
   standalone: true,
-  imports: [MatCard,MatCardModule,CommonModule],
+  imports: [MatCard,MatCardModule,CommonModule,RouterOutlet,HttpClientModule],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.css'
 })
 export class WeatherComponent {
 
-  capital: string | null=null;
-  weatherData: any;
+  capital: string ;
+  longituide: string ;
+  weatherData: WeatherData;
 
   constructor(private route: ActivatedRoute, private http: HttpClient,private apiService:ApiServiceService,private router:Router) {}
 
   ngOnInit(): void {
-    this.capital = this.route.snapshot.paramMap.get('capital');
+    this.capital = this.route.snapshot.paramMap.get('latitude');
+    this.longituide = this.route.snapshot.paramMap.get('longitude');
+
+    console.log(this.capital)
     this.getCapitalWeather();
+    // console.log(this.weatherData)
   }
 
   getCapitalWeather() {
-    // const apiKey = '7aae0d0b8034def58abb3a31f6e317b0'; // Replace with your actual API key
-    // const weatherUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${this.capital}`;
-    // this.http.get(weatherUrl).subscribe(data => {
-    //   console.log(data)
-    //   this.weatherData = data;
-    // });
-    this.apiService.getWeatherByCapital(this.capital || "").subscribe({
-      next:(data:[])=>{
+    this.apiService.getWeatherByCapital(this.capital,this.longituide).subscribe({
+      next:(data:WeatherData)=>{
         console.log(data)
         this.weatherData=data;
       },

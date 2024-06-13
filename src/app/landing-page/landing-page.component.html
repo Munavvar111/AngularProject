@@ -1,16 +1,46 @@
-<div class="landingPage">
-  <div class="container">
-    <form [formGroup]="WetherForm" (ngSubmit)="Onsubmit()">
-      <div class="form-floating mt-3">
-        <mat-form-field appearance="outline">
-          <mat-label>Enter The Country Name</mat-label>
-          <input matInput formControlName="CountryName" placeholder="CountryName">
-          <mat-error *ngIf="isControlInvalid('CountryName')" class="text-danger">Country Name is required.</mat-error>
-        </mat-form-field>
-      </div>
-      <div class="d-flex gap-2 mt-3 justify-content-center">
-        <button type="submit" mat-raised-button color="primary" [disabled]="WetherForm.invalid">Save</button>
-      </div>
+<div class="container mt-3">
+  <div class="search-form">
+    <form [formGroup]="WetherForm" (ngSubmit)="Onsubmit()" class="d-flex flex-column align-items-center">
+      <mat-form-field appearance="outline" class="mb-3 w-75">
+        <mat-label>Enter The Country Name</mat-label>
+        <input matInput formControlName="CountryName" placeholder="Country Name">
+        <mat-error *ngIf="isControlInvalid('CountryName')" class="text-danger">Country Name is required.</mat-error>
+      </mat-form-field>
+
+      <button type="submit" mat-raised-button color="primary" [disabled]="WetherForm.invalid">Search</button>
     </form>
   </div>
+</div>
+
+<div class="d-flex gap-4 flex-wrap mt-4 mx-3">
+  @for (item of CountryList; track $index) {
+  
+      <mat-card class="example-card">
+          <mat-card-header>
+              <div mat-card-avatar class="example-header-image"  [ngStyle]="{'background-image': 'url(' + item.flags.png + ')'}">
+
+                
+              </div>
+              <mat-card-title>{{item.name.common}}</mat-card-title>
+              @for (capital of item.capital; track $index) {
+
+                  <mat-card-subtitle>{{capital}}</mat-card-subtitle>
+              }
+          </mat-card-header>
+          <img mat-card-image src="{{item.flags.png}}" alt="Flag of {{item.name.common}}">
+          <mat-card-content>
+              @for (currency of getCurrencies(item.currencies); track $index) {
+                  <p>
+                      {{currency.name}} ({{currency.symbol}})
+                  </p>
+              }
+              <p>Population: {{item.population}}</p>
+              <p>Coordinates: {{item.latlng}}</p>
+
+          </mat-card-content>
+          <mat-card-actions >
+              <button mat-raised-button color="primary"  (click)="getCapitalWeather(item.latlng)">Capital Weather</button>
+          </mat-card-actions>
+      </mat-card>
+  }
 </div>

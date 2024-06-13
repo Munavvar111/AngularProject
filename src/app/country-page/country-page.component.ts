@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Country } from '../model/country.model';
 
 @Component({
   selector: 'app-countrt-page',
@@ -15,14 +16,14 @@ import { CommonModule } from '@angular/common';
   styleUrl: './country-page.component.css'
 })
 export class CountrtPageComponent implements OnInit{
-  CountryList:any=[];
+  CountryList:Country[]=[];
   countryName: string | null=null;
 
   constructor(private apiService:ApiServiceService,private router:Router){}
   ngOnInit(): void {
     this.countryName = this.apiService.getCountryName();
     this.apiService.getCountry(this.countryName || "" ).subscribe({
-      next:(data:[])=>{
+      next:(data:Country[])=>{
         this.CountryList=data
         console.log(this.CountryList)
       },
